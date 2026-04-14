@@ -22,14 +22,10 @@
 ## 当前环境记录（2026-04-14）
 
 - 操作系统：`Microsoft Windows NT 10.0.22631.0`
-- PowerShell：`5.1.22621.2506`（Desktop Edition）
 - TeX 发行版：`TeX Live 2026`
 - `xelatex`：`XeTeX 3.141592653-2.6-0.999998 (TeX Live 2026)`
 - `biber`：`2.21`
 - `latexmk`：`4.88`
-- `git`：`2.47.1.windows.2`
-- 工作目录：`C:\Workspace\CodexSpace\writing-test\nk_latex_template`
-- 额外说明：当前 `PATH` 中未检测到 `make`（已使用 `compile.ps1` 作为默认编译入口）。
 
 ## 推荐编译方式
 
