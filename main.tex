@@ -69,11 +69,11 @@
 \AtEveryCitekey{\addtocategory{cited}{\thefield{entrykey}}}
 
 \includeonly{
-abstract,
-manual,
-acknowledgements,
-references,
-appendices
+sections/abstract,
+sections/manual,
+sections/acknowledgements,
+sections/references,
+sections/appendices
 }
 \newtheorem{Theorem}{\hskip 2em 定理}[chapter]
 \newtheorem{Lemma}[Theorem]{\hskip 2em 引理}
@@ -117,15 +117,15 @@ appendices
   空后缀 = ,
   }
 
-\include{abstract}
+\include{sections/abstract}
 \tableofcontents
 \begin{spacing}{1.5}
-\include{manual}
+\include{sections/manual}
 
-\include{references}
+\include{sections/references}
 \end{spacing}
-\include{acknowledgements}
-\include{appendices}
+\include{sections/acknowledgements}
+\include{sections/appendices}
 %\include{resume}
 
 

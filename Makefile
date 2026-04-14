@@ -3,9 +3,7 @@ MAIN := main
 .PHONY: compile compile-legacy tidy clean zip
 
 compile:
-	latexmk -xelatex -interaction=nonstopmode -halt-on-error $(MAIN).tex
-	latexmk -c $(MAIN).tex
-	$(MAKE) tidy
+	powershell -NoProfile -ExecutionPolicy Bypass -File ./compile.ps1 -Main $(MAIN)
 
 compile-legacy:
 	xelatex $(MAIN)
@@ -22,4 +20,4 @@ clean:
 	rm -f $(MAIN).pdf
 
 zip:
-	zip nkthesis.zip *.tex *.bbx *.bib *.cbx *.sty fonts/* figures/*
+	zip nkthesis.zip *.tex sections/*.tex *.bbx *.bib *.cbx *.sty fonts/* figures/*
