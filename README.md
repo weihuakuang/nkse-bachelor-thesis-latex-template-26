@@ -1,70 +1,74 @@
 # nkse-bachelor-thesis-latex-template-26
 
-2026 Nankai University bachelor thesis LaTeX template (College of Software).
+2026 南开大学软件学院本科毕业论文 LaTeX 模板。
 
-## 项目说明
+## 项目结构
 
-- 本仓库用于本科毕业论文写作与本地编译。
-- 当前内容组织方式：`main.tex` 为主文件，其它可写章节文件位于 `sections/`。
-- `docs/` 目录是历史文档站（Jekyll）相关文件，不参与论文 PDF 编译。
+- `main.tex`：主文件。
+- `sections/`：除主文件外的可写章节内容。
+- `NKThesis.sty`：模板样式文件。
+- `nkthesis.bib`：参考文献数据库。
+- `nkthesis.bbx` / `nkthesis.cbx`：`biblatex` 样式文件（当前配置必需）。
+- `fonts/`：模板使用字体文件（当前样式配置必需）。
+- `figures/`：示例/正文使用图片资源。
+- `compile.ps1`：推荐编译脚本（隔离编译，不在项目根目录保留中间文件）。
 
 ## 环境要求
 
-- TeX Live（已在当前项目环境验证）。
-- 需要可用命令：`latexmk`、`xelatex`、`biber`。
-- Windows 下推荐使用 PowerShell 执行编译脚本。
+- TeX Live（已验证可用）。
+- 可执行命令：`latexmk`、`xelatex`、`biber`。
+- Windows 下推荐 PowerShell 执行。
 
-## 编译方式（推荐）
-
-推荐命令：
+## 推荐编译方式
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\compile.ps1 -Main main
 ```
 
-说明：
+该方式特点：
 
-- 使用 `latexmk` 自动调度 `xelatex + biber` 编译链路。
-- 在系统临时目录隔离编译，仅回传 `main.pdf` 到项目根目录。
-- 根目录不会保留 `aux/bbl/bcf/log/toc` 等中间文件。
+- 使用 `latexmk` 自动调度 `xelatex + biber`。
+- 在系统临时目录执行完整编译流程。
+- 仅回传 `main.pdf` 到项目根目录。
+- 根目录不保留 `aux/bbl/bcf/log/toc` 等中间文件。
 
-## 编译方式（兼容）
+## 手动编译方式（兼容）
 
-如果你希望手动固定流程，可使用：
+如需手动固定流程，可执行：
 
 1. `xelatex main`
 2. `biber main`
 3. `xelatex main`
-4. `xelatex main`（可选，通常用于进一步稳定目录/引用）
+4. `xelatex main`（可选，用于进一步稳定交叉引用）
 
-## 已记录的编译问题与处理（2026-04-14）
+## 已处理问题记录（2026-04-14）
 
-现象：
+### 现象
 
-- 按 `xelatex -> biber -> xelatex` 编译时，附录章节位置曾出现：
+- 按 `xelatex -> biber -> xelatex` 编译时，附录章节位置出现：
   - `Runaway argument`
   - `Paragraph ended before \HyPsd@@ProtectSpacesFi was complete`
-- 随后 `biber` 报 `main.bcf is malformed`（属于前一步失败后的连锁错误）。
+- 随后 `biber` 报 `main.bcf is malformed`（由上一步失败连锁触发）。
 
-根因：
+### 根因
 
-- 附录章节标题与 `hyperref` 书签处理兼容性问题，不是 TeX Live 安装问题，也不是 `biber` 本身问题。
+- 附录章节标题与 `hyperref` 书签处理存在兼容性问题。
 
-处理：
+### 处理
 
-- 对附录章节写法做最小规避（避免破坏模板规范）：
-  - 文件：`sections/appendices.tex`
-  - 写法：`\\chapter[Appendix]{附录}`
+- 在 `sections/appendices.tex` 使用最小规避写法：
+  - `\\chapter[Appendix]{附录}`
 
-结果：
+### 结果
 
-- 编译链路可正常完成，PDF 正常生成。
-- 仍可能存在非致命警告（字体替代、版面 over/underfull、部分 `hyperref` 提示），不影响产出。
+- `xelatex + biber` 编译链路恢复正常。
+- 仍可能有非致命警告（字体替代、over/underfull、部分 `hyperref` 提示），不影响 `main.pdf` 生成。
 
-## 参考与来源声明
+## 参考来源声明
 
-- 原始模板项目（历史来源）：
-  - GitHub: https://github.com/Tr0py/NKU-thesis-template-2020
-  - Overleaf 模板页：
-    https://www.overleaf.com/latex/templates/nan-kai-da-xue-ben-ke-sheng-bi-ye-lun-wen-mo-ban-v1-dot-4/hdfqhtmmmdpv
-- `docs/` 中的 Jekyll 配置与首页文案主要用于项目展示页，不作为论文编译依赖。
+- 历史来源模板仓库：<https://github.com/Tr0py/NKU-thesis-template-2020>
+- Overleaf 模板页：<https://www.overleaf.com/latex/templates/nan-kai-da-xue-ben-ke-sheng-bi-ye-lun-wen-mo-ban-v1-dot-4/hdfqhtmmmdpv>
+
+## 许可证
+
+本仓库采用 [MIT License](LICENSE)。
