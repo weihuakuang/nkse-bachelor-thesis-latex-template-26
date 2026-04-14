@@ -11,7 +11,8 @@
 - `nkthesis.bbx` / `nkthesis.cbx`：`biblatex` 样式文件（当前配置必需）。
 - `fonts/`：模板使用字体文件（当前样式配置必需）。
 - `figures/`：示例/正文使用图片资源。
-- `compile.ps1`：推荐编译脚本（隔离编译，不在项目根目录保留中间文件）。
+- `compile.ps1`：Windows 编译脚本（隔离编译，不在项目根目录保留中间文件）。
+- `compile.sh`：macOS/Linux 等价编译脚本（隔离编译，不在项目根目录保留中间文件）。
 
 ## 附录状态
 
@@ -25,7 +26,8 @@
 
 - TeX Live（已验证可用）。
 - 可执行命令：`latexmk`、`xelatex`、`biber`。
-- Windows 下推荐 PowerShell 执行。
+- Windows 下推荐 PowerShell 执行 `compile.ps1`。
+- macOS 理论兼容（`latexmk + xelatex + biber` 工具链一致），但当前仓库**未在 macOS 实机测试**。
 
 ## 当前环境记录（2026-04-14）
 
@@ -37,8 +39,16 @@
 
 ## 推荐编译方式
 
+Windows:
+
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\compile.ps1 -Main main
+```
+
+macOS/Linux:
+
+```bash
+bash ./compile.sh main
 ```
 
 该方式特点：
@@ -97,7 +107,6 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\compile.ps1 -Main main
   - 默认关闭附录入口，按需开启，减少日常构建风险。
 - 工程文档改造：
   - 合并并规范化 README，补充环境记录、编译方式、问题诊断和使用说明。
-  - 删除非编译必需的 `docs/` 文档站目录，保持仓库聚焦论文编译与写作。
 
 ## 参考来源声明
 
