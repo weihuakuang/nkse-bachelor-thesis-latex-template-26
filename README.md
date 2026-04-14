@@ -16,20 +16,21 @@
 
 ## 附录状态
 
-- 当前默认：附录已在 `main.tex` 中注释关闭，不参与编译。
+- 默认状态：附录在 `main.tex` 中已注释，不参与编译。
+- 说明：老师提供的 PDF 样例中本身不包含附录，因此此仓库默认关闭附录入口。
 - 如需开启附录：
   1. 取消注释 `\includeonly` 中的 `sections/appendices`
   2. 取消注释正文中的 `\include{sections/appendices}`
-- 附录文件应使用模板定义的调用方式：` \appendix{...} `（当前 `sections/appendices.tex` 为 `\appendix{}`）。
+- 附录文件请使用模板定义的调用方式：`\appendix{...}`（当前 `sections/appendices.tex` 为 `\appendix{}`）。
 
 ## 环境要求
 
 - TeX Live（已验证可用）。
 - 可执行命令：`latexmk`、`xelatex`、`biber`。
 - Windows 下推荐 PowerShell 执行 `compile.ps1`。
-- macOS 理论兼容（`latexmk + xelatex + biber` 工具链一致），但当前仓库**未在 macOS 实机测试**。
+- macOS 理论兼容（`latexmk + xelatex + biber` 工具链一致），但目前未做实机验证。
 
-## 当前环境记录（2026-04-14）
+## 环境记录
 
 - 操作系统：`Microsoft Windows NT 10.0.22631.0`
 - TeX 发行版：`TeX Live 2026`
@@ -67,7 +68,7 @@ bash ./compile.sh main
 3. `xelatex main`
 4. `xelatex main`（可选，用于进一步稳定交叉引用）
 
-## 已处理问题记录（2026-04-14）
+## 已处理问题记录
 
 ### 错误现象
 
@@ -76,12 +77,12 @@ bash ./compile.sh main
   - `Paragraph ended before \HyPsd@@ProtectSpacesFi was complete`
 - 随后 `biber` 报 `main.bcf is malformed`（上一轮 `xelatex` 失败导致的连锁错误，不是 `biber` 本身故障）。
 
-### 触发方式（错误写法）
+### 触发方式
 
-- 在 `sections/appendices.tex` 中把附录写成了“`appendix + chapter`”组合（例如 `\appendix` 后再写 `\chapter[...]` 或 `\\chapter[...]`）。
+- 在 `sections/appendices.tex` 中将附录写成了“`appendix + chapter`”组合（例如 `\appendix` 后再写 `\chapter[...]` 或 `\\chapter[...]`）。
 - 这会与模板内部章节定义和 `hyperref` 书签生成冲突，触发上面的致命错误。
 
-### 根因（真实原因）
+### 根因
 
 - `NKThesis.sty` 已重定义 `\appendix`，其内部会调用 `\chapter`。
 - 因此该模板中附录应直接使用 `\appendix{...}`，不应再额外手写 `\chapter`。
@@ -98,14 +99,14 @@ bash ./compile.sh main
 
 ## 相对原项目的改进
 
-- 编译流程改造：
+- 编译流程：
   - 新增 `compile.ps1`，在系统临时目录隔离编译，仅回传 `main.pdf`，项目根目录不保留中间文件。
-- 目录结构改造：
+- 目录结构：
   - 将除 `main.tex` 外的可写章节集中到 `sections/`，提高可维护性。
-- 构建稳定性改造：
+- 构建稳定性：
   - 修复附录章节写法与模板定义不一致导致的致命编译错误。
   - 默认关闭附录入口，按需开启，减少日常构建风险。
-- 工程文档改造：
+- 工程文档：
   - 合并并规范化 README，补充环境记录、编译方式、问题诊断和使用说明。
 
 ## 参考来源声明
