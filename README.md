@@ -1,10 +1,10 @@
 # nkse-bachelor-thesis-latex-template-26
 
+2026 南开大学软件学院本科毕业论文 LaTeX 模板
+
 ## 在线查看/编辑（推荐）
 
 **https://www.texpage.com/share/8a5d40412315420d82407df140342bf1**
-
-2026 南开大学软件学院本科毕业论文 LaTeX 模板。
 
 ## 项目结构
 
@@ -115,8 +115,8 @@ bash ./compile.sh main
 
 ## 参考来源声明
 
-- 历史来源模板仓库：<https://github.com/Tr0py/NKU-thesis-template-2020>
-- Overleaf 模板页：<https://www.overleaf.com/latex/templates/nan-kai-da-xue-ben-ke-sheng-bi-ye-lun-wen-mo-ban-v1-dot-4/hdfqhtmmmdpv>
+- 历史来源模板仓库：[https://github.com/Tr0py/NKU-thesis-template-2020](https://github.com/Tr0py/NKU-thesis-template-2020)
+- Overleaf 模板页：[https://www.overleaf.com/latex/templates/nan-kai-da-xue-ben-ke-sheng-bi-ye-lun-wen-mo-ban-v1-dot-4/hdfqhtmmmdpv](https://www.overleaf.com/latex/templates/nan-kai-da-xue-ben-ke-sheng-bi-ye-lun-wen-mo-ban-v1-dot-4/hdfqhtmmmdpv)
 
 ## 许可证
 
